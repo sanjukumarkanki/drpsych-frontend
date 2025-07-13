@@ -1,0 +1,165 @@
+:root {
+  --bg-font-color: #666;
+}
+
+.footer {
+  padding: 0.8rem 1.88rem 1rem 1.88rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  background-color: var(--brandColor);
+}
+.footer-main-container {
+  display: flex;
+  justify-content: center;
+  font-size: 0.5rem;
+  margin-left: 0rem;
+}
+.footer-main-container h4 {
+  font-size: 0.6rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.footer-our-vision-container {
+  width: 19rem;
+}
+
+.our-services-main-container,
+.quick-links-main-container {
+  width: 7rem;
+}
+/* .our-services-main-container {
+  width: 33.3%;
+}
+.quick-links-main-container {
+  width: 33.3%;
+} */
+.footer-main-container a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 400;
+}
+.footer-main-container a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.footer-main-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+.footer-main-container ul li,
+.footer-our-vision p {
+  padding: 0.7rem 0 0 0;
+  width: 100%;
+  color: #fff;
+}
+
+.footer-our-vision h2 {
+  padding: 0rem 0 0.1rem 0;
+  border: 0.06rem solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+  margin-top: 0.5rem;
+  color: #fff !important;
+  font-size: 1rem !important;
+}
+.footer-main-container span {
+  background-color: #fff;
+  width: 1.4rem;
+  height: 0.09rem;
+  display: block;
+  border-radius: 0.5rem;
+  margin-top: 0.18rem;
+}
+.footer-main-heading-underline {
+  background-color: #fff;
+  width: 0.2rem;
+  height: 0.09rem;
+  display: block;
+  border-radius: 0.5rem;
+  position: relative;
+  left: 1.48rem;
+  bottom: 0.09rem;
+}
+
+.social-media-container img {
+  width: 1.06rem;
+  height: 1.06rem;
+  margin-top: 0.5rem;
+}
+.footer-cipher-oncology {
+  width: 100%;
+  height: 2.8rem;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.fas b {
+  font-size: 0.7rem;
+}
+.footer__call-icon {
+  color: #fff !important;
+  font-size: 0.5rem;
+  font-weight: 400;
+}
+.footer__call-icon {
+  color: #fff !important;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-right: 0.3rem;
+}
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 0.8rem 1.09rem 1rem 1.09rem;
+  }
+  .footer-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.6rem;
+    margin-left: 0rem;
+  }
+  .footer-main-container ul li,
+  .footer-our-vision p {
+    padding: 0.7rem 0 0 0;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 0;
+  }
+  .footer-our-vision h2 {
+    width: 9rem;
+  }
+  .our-services-main-container {
+    margin-top: 1.5rem;
+  }
+  .quick-links-main-container {
+    margin-top: 1.5rem;
+  }
+  .Social-media-main-container {
+    margin-top: 1rem;
+  }
+  .social-media-container img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .footer-main-heading-underline {
+    background-color: #fff;
+    width: 0.2rem;
+    height: 0.09rem;
+    display: block;
+    border-radius: 0.5rem;
+    position: relative;
+    left: 1.48rem;
+    bottom: 0.09rem;
+  }
+
+  .footer-our-vision-container,
+  .our-services-main-container,
+  .quick-links-main-container {
+    width: 100%;
+  }
+}

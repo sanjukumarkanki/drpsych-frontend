@@ -1,0 +1,143 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  width: 95%;
+  /* margin: 60px auto; */
+  margin: 1rem 0;
+  /* padding: 30px; */
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.8rem;
+  box-shadow: 0 8px 1rem rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0.8rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0;
+  color: var(--brandColor);
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.nameInput {
+  width: 100%;
+  height: 1.8rem;
+  padding: 0 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.63rem;
+  font-weight: 400;
+  color: #606060;
+}
+
+.nameInput:focus,
+.textareaInput:focus {
+  border-color: var(--brandColor);
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.3);
+  color: #606060;
+}
+
+.nameInput::placeholder,
+.textareaInput::placeholder {
+  font-size: 0.63rem;
+  font-weight: 400;
+  color: #606060;
+}
+
+.textareaInput {
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.63rem;
+  font-weight: 400;
+  width: 100%;
+}
+
+.button {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background-color: var(--brandColor);
+  color: white;
+  border: none;
+  border-radius: 1.09rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: #000;
+}
+
+.customSelect {
+  appearance: none; /* Hide native arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url("https://cdn-icons-png.flaticon.com/128/32/32195.png")
+    no-repeat right 0.8rem center;
+  background-size: 0.3rem;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 0.7rem;
+  }
+  .container {
+    width: 13rem;
+    border-radius: 0.5rem;
+    padding: 0.3rem 1rem;
+    margin: .1rem 0 0 0;
+  }
+  .nameInput {
+    height: 1.3rem;
+    font-size: 0.3rem;
+  }
+
+  .nameInput::placeholder,
+  .nameInput,
+  .textareaInput,
+  .textareaInput::placeholder {
+    font-size: 0.41rem;
+  }
+  .customSelect {
+    width: 5.3rem;
+  }
+  .form {
+    margin-top: 0.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.3rem;
+  }
+
+  .textareaInput {
+    font-size: 0.3rem;
+  }
+
+  .button {
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.45rem;
+  }
+}

@@ -1,0 +1,64 @@
+.bookAppointmentContainer {
+  background-color: var(--brandColor);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 3rem 1.09rem 1.3rem 1.09rem;
+  border-radius: .5rem;
+}
+
+.bookAppointmentContainerLeft > h2 {
+  /* typo? Should it be "left"? */
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 0.9rem;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.bookAppointmentContainerLeft > button {
+  padding: 0.3rem 0.8rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  color: var(--brandColor);
+  font-size: 0.5rem;
+  font-weight: 600;
+  line-height: 0.5rem;
+  border-radius: 0.8rem;
+}
+
+.bookAppointmentContainerRight {
+  /* your styles here */
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  right: 0.3rem;
+  transform: scale(1.5);
+  bottom: 1.26rem;
+}
+
+.bookAppointmentContainerRight > img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .bookAppointmentContainerLeft > h2 {
+    /* typo? Should it be "left"? */
+    font-size: 1rem;
+    line-height: 1.3em;
+    margin-bottom: 0.7rem;
+  }
+  .bookAppointmentContainerRight {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    right: 1.4rem;
+    transform: scale(1.8);
+    bottom: 2.39rem;
+  }
+}

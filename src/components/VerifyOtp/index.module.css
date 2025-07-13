@@ -1,0 +1,115 @@
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0;
+  color: var(--brandColor);
+}
+
+.description {
+  font-size: 0.63rem;
+  font-weight: 400;
+  color: #000;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.otpBoxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 0.8rem;
+  margin: 2rem 0;
+}
+.otpBoxes > input {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.2rem;
+  padding: 0 0.8rem;
+  border: solid 1px #000;
+}
+
+.otpBoxes > input:focus {
+  border: 0.04rem solid var(--brandColor);
+  outline: none;
+}
+
+.verifyButton {
+  align-self: center;
+  padding: 0.5rem 1.2rem;
+  border-radius: 1.09rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: var(--brandColor);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.resendContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.resendContainer > .resendBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.63rem;
+  font-weight: 500;
+  color: var(--brandColor);
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 0.7rem;
+  }
+  .container {
+    width: 18rem;
+    border-radius: 0.5rem;
+    padding: 0.3rem 1rem;
+    margin: 0.1rem 0 0 0;
+  }
+  .otpBoxes {
+    gap: 0 0.5rem;
+  }
+  .otpBoxes > input {
+    height: 1.4rem;
+    width: 1.4rem;
+    border-radius: 0.2rem;
+    padding: 0.3rem 0.4rem;
+    border: solid 1px #000;
+  }
+
+  .form {
+    margin-top: 0.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.3rem;
+  }
+
+  .textareaInput {
+    font-size: 0.3rem;
+  }
+
+  .verifyButton {
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.45rem;
+  }
+
+  .description {
+    font-size: 0.4rem;
+  }
+
+  .resendContainer > .resendBtn {
+    font-size: 0.45rem;
+  }
+}

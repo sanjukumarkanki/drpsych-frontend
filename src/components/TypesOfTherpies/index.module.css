@@ -1,0 +1,134 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.3rem;
+  font-weight: 700;
+  color: var(--brandColor);
+  margin-bottom: 0.3rem;
+}
+
+.description {
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+  font-weight: 300;
+  color: var(--grayColor);
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 1rem;
+  }
+  .description {
+    font-size: 0.5rem;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  padding: 1rem 1rem 3rem 1rem;
+  border-radius: 0.6rem;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+
+
+.cardTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1c2a39;
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 0.7rem;
+  color: #333;
+  margin-bottom: 0.6rem;
+  line-height: 0.9rem;
+}
+.cardDescription {
+  font-size: 0.7rem;
+  color: #333;
+  margin-bottom: 0.6rem;
+  line-height: 0.9rem;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--brandColor);
+  font-size: 0.75rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: 0.8rem;
+}
+
+/* Color Variants */
+.lightBlue {
+  background-color: #e8f5fe;
+}
+
+.lightGreen {
+  background-color: #e9fdf2;
+}
+
+.lightYellow {
+  background-color: #fffde7;
+}
+
+.lightPeach {
+  background-color: #fff3e9;
+}
+
+@media screen and (min-width: 768px) {
+  .cards {
+    gap: 0 0.8rem;
+  }
+  .card {
+    width: 7rem;
+    padding: 0.8rem 0.8rem 1.8rem 0.8rem;
+    border-radius: 0.3rem;
+  }
+
+  .cardTitle {
+    font-size: 0.6rem;
+    line-height: 0.8rem;
+  }
+  .cardDescription {
+    font-size: 0.4rem;
+    margin-bottom: 0.6rem;
+    line-height: 0.6rem;
+  }
+  .price {
+    font-size: 0.35rem;
+    line-height: 0.6rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.1rem;
+    bottom: 0.4rem;
+  }
+}
