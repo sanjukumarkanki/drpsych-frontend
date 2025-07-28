@@ -1,225 +1,73 @@
-import { NavLink } from "react-router-dom";
-import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
-import { BiAnalyse, BiSearch } from "react-icons/bi";
-import { BiCog } from "react-icons/bi";
-import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
-import { BsCartCheck } from "react-icons/bs";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import SidebarMenu from "../SidebarMenu";
-import './index.css'
+import React, { useEffect, useState } from "react";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { MdOutlineDashboard } from "react-icons/md";
+import { RiSettings4Line } from "react-icons/ri";
+import { TbReportAnalytics } from "react-icons/tb";
+import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
+import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import "./index.css";
 
-const routes = [
-  {
-    path: "/",
-    name: "Dashboard",
-    icon: <FaHome />,
-  },
-  {
-    path: "/users",
-    name: "Appointments",
-    icon: <FaUser />,
-  },
-  {
-    path: "/add-doctor",
-    name: "Add Doctor",
-    icon: <MdMessage />,
-  },
-  {
-    path: "/doctos-list",
-    name: "Doctors List",
-    icon: <BiAnalyse />,
-  },
-  {
-    path: "/file-manager",
-    name: "File Manager",
-    icon: <AiTwotoneFileExclamation />,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
-  },
-  {
-    path: "/order",
-    name: "Order",
-    icon: <BsCartCheck />,
-  },
-  {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog />,
-    exact: true,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
-  },
-  {
-    path: "/saved",
-    name: "Saved",
-    icon: <AiFillHeart />,
-  },
-];
+const Sidebar = () => {
+  const menus = [
+    {
+      name: "Dashboard",
+      link: "/therapist-dashboard",
+      icon: MdOutlineDashboard,
+    },
+    {
+      name: "All Appointments",
+      link: "/all-appointments",
+      icon: AiOutlineUser,
+    },
+    { name: "Availability", link: "/availability", icon: FiMessageSquare },
+  ];
 
-const SideBar = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  const inputAnimation = {
-    hidden: {
-      width: 0,
-      padding: 0,
-      transition: {
-        duration: 0.2,
-      },
-    },
-    show: {
-      width: "140px",
-      padding: "5px 15px",
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
+  const [open, setOpen] = useState(true);
 
-  const showAnimation = {
-    hidden: {
-      width: 0,
-      opacity: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-    show: {
-      opacity: 1,
-      width: "auto",
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
+  // Optional: auto-collapse on small screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // initial check
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <>
-      <div className="main-container">
-        <motion.div
-          animate={{
-            width:  "auto",
-
-            transition: {
-              duration: 0.5,
-              type: "spring",
-              damping: 10,
-            },
-          }}
-          className={`sidebar `}
-        >
-          <div className="top_section">
-            <AnimatePresence>
-              {isOpen && (
-                <motion.h1
-                  variants={showAnimation}
-                  initial="hidden"
-                  animate="show"
-                  exit="hidden"
-                  className="logo"
-                >
-                  DoSomeCoding
-                </motion.h1>
-              )}
-            </AnimatePresence>
-
-            <div className="bars">
-              <FaBars onClick={toggle} />
-            </div>
-          </div>
-          {/* <div className="search">
-            <div className="search_icon">
-              <BiSearch />
-            </div>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.input
-                  initial="hidden"
-                  animate="show"
-                  exit="hidden"
-                  variants={inputAnimation}
-                  type="text"
-                  placeholder="Search"
-                />
-              )}
-            </AnimatePresence>
-          </div> */}
-          <section className="routes">
-            {routes.map((route, index) => {
-              if (route.subRoutes) {
-                return (
-                  <SidebarMenu
-                    setIsOpen={setIsOpen}
-                    route={route}
-                    showAnimation={showAnimation}
-                    isOpen={isOpen}
-                  />
-                );
-              }
-
-              return (
-                <NavLink
-                  to={route.path}
-                  key={index}
-                  className="link"
-                  activeClassName="active"
-                >
-                  <div className="icon">{route.icon}</div>
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        variants={showAnimation}
-                        initial="hidden"
-                        animate="show"
-                        exit="hidden"
-                        className="link_text"
-                      >
-                        {route.name}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </NavLink>
-              );
-            })}
-          </section>
-        </motion.div>
-
-        <main>{children}</main>
+    <div className={`sidebar ${open ? "open" : "collapsed"}`}>
+      <div className="toggle">
+        <HiMenuAlt3
+          size={26}
+          className="toggle-icon"
+          onClick={() => setOpen(!open)}
+        />
       </div>
-    </>
+      <div className="menu">
+        {menus.map((menu, i) => (
+          <Link
+            to={menu.link}
+            key={i}
+            className={`menu-item ${menu.margin ? "margin" : ""}`}
+          >
+            <div className="icon">
+              {React.createElement(menu.icon, { size: "20" })}
+            </div>
+            <div
+              className={`label ${open ? "show" : "hide"}`}
+              style={{ transitionDelay: `${i + 3}00ms` }}
+            >
+              {menu.name}
+            </div>
+            {!open && <div className="tooltip">{menu.name}</div>}
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default SideBar;
+export default Sidebar;

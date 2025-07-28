@@ -1,0 +1,177 @@
+/* .container {
+  padding: 20px;
+} */
+.container {
+  margin-top: 1rem;
+}
+
+.textcontainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.heading {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--brandColor);
+}
+.viewAlltext {
+  text-decoration: none;
+  color: var(--brandColor);
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+.caardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 0.4rem;
+  background-color: #fff;
+}
+.cardProfileContainer {
+  display: flex;
+}
+
+.avatar {
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.72rem;
+  margin-right: 0.8rem;
+}
+
+.details {
+  flex: 1;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 0.63rem;
+  color: var(--brandColor);
+}
+
+.datetime {
+  color: #666;
+  font-size: 0.54rem;
+}
+
+.sessionType {
+  font-size: 0.54rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.viewButton {
+  background: var(--brandColor);
+  color: white;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  font-size: 0.54rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.viewButton:hover {
+  background: #218838;
+}
+
+.joinLink {
+  background: #0069d9;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.5rem;
+
+  border-radius: 0.2rem;
+  font-size: 0.54rem;
+
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.joinLink:hover {
+  background: #0056b3;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 13rem;
+  }
+  .heading,
+  .viewAlltext {
+    font-size: 0.6rem;
+  }
+
+  .container::-webkit-scrollbar {
+    display: none;
+  }
+  .caardsContainer {
+    gap: 0.1rem 0;
+    height: 8rem;
+    overflow-y: scroll;
+  }
+
+  .caardsContainer::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .cardProfileContainer {
+    align-items: center;
+  }
+  .avatar {
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.4rem;
+  }
+  .name {
+    font-size: 0.4rem;
+  }
+  .datetime {
+    font-size: 0.3rem;
+  }
+  .sessionType {
+    font-size: 0.3rem;
+    margin-top: 0rem;
+  }
+  .viewButton {
+    font-size: 0.3rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .joinLink {
+    font-size: 0.3rem;
+    padding: 0.2rem 0.6rem;
+  }
+}

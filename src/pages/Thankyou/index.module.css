@@ -1,0 +1,78 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--brandColor);
+  border: 1px solid #f0f0f0;
+  border-radius: 0.8rem;
+  padding: 1.5rem 1.3em;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #e85cf8;
+}
+
+.title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 0.6rem;
+  line-height: 0.9rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.button {
+  background: #fff;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.6rem;
+  color: var(--brandColor);
+  cursor: pointer;
+  margin-top: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 15rem;
+  }
+  .icon {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .title {
+    font-size: 0.8rem;
+  }
+  .subtitle {
+    font-size: 0.4rem;
+    line-height: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .button {
+    font-size: 0.4rem;
+    padding: 0.5rem 0.9rem;
+  }
+}

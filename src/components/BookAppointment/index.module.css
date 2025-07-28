@@ -1,0 +1,164 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.05);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nameInput {
+  width: 100%;
+  height: 1.8rem;
+  padding: 0 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.63rem;
+  font-weight: 400;
+  color: #606060;
+  margin-bottom: .3rem;
+}
+
+.nameInput:focus,
+.textareaInput:focus {
+  border-color: var(--brandColor);
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.3);
+  color: #606060;
+}
+
+.nameInput::placeholder,
+.textareaInput::placeholder {
+  font-size: 0.63rem;
+  font-weight: 400;
+  color: #606060;
+}
+
+.textareaInput {
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.63rem;
+  font-weight: 400;
+  width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .wrapper {
+    flex-direction: row;
+  }
+  .nameInput {
+    height: 1.3rem;
+    font-size: 0.3rem;
+  }
+
+  .nameInput::placeholder,
+  .nameInput,
+  .textareaInput,
+  .textareaInput::placeholder {
+    font-size: 0.41rem;
+  }
+}
+
+.leftCard {
+  flex: 1;
+  padding: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  background-color: #f9f9f9;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.userInfo img {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+}
+
+.rightSection {
+  flex: 2;
+  overflow-y: auto;
+}
+
+.slotGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(6.25rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.slotButton {
+  padding: 0.625rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: #f1f1f1;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.slotButton:hover {
+  background: #e2e8f0;
+}
+
+.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.form button {
+  padding: 0.75rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.form button:disabled {
+  background-color: #999;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.successMessage {
+  padding: 1.25rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 0.75rem;
+}

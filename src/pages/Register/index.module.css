@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,6 +100,22 @@
   width: 100%;
 }
 
+.loginText {
+  font-size: 0.62rem;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+.loginText > span {
+  color: var(--brandColor);
+  font-weight: 700;
+  margin-left: 0.15rem;
+
+  cursor: pointer;
+}
+.loginText > span:hover {
+  text-decoration: underline;
+}
 @media screen and (min-width: 768px) {
   .title {
     font-size: 0.7rem;
@@ -108,7 +124,7 @@
     width: 13rem;
     border-radius: 0.5rem;
     padding: 0.3rem 1rem;
-    margin: .1rem 0 0 0;
+    margin: 0.1rem 0 0 0;
   }
   .nameInput {
     height: 1.3rem;
@@ -129,6 +145,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.3rem 0.3rem;
+  }
+
+  .loginText {
+    font-size: 0.42rem;
   }
 
   .textareaInput {

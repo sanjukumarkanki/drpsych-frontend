@@ -6,7 +6,7 @@
   align-items: center;
   position: relative;
   margin: 3rem 1.09rem 1.3rem 1.09rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .bookAppointmentContainerLeft > h2 {
@@ -16,6 +16,7 @@
   line-height: 0.9rem;
   color: #fff;
   margin-bottom: 0.3rem;
+  text-align: left;
 }
 
 .bookAppointmentContainerLeft > button {

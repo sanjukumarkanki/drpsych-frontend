@@ -4,45 +4,44 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 const faqs = [
   {
-    question:
-      "What types of mental health professionals are available on DrPsych?",
+    question: "What kinds of therapists are available on Dr.Psych?",
     answer:
-      "DrPsych connects you with licensed psychologists, psychiatrists, and counselors who specialize in areas like anxiety, depression, stress, trauma, and relationships.",
+      "We have trained counselors, psychologists, and psychiatrists — each vetted for experience, empathy, and expertise in areas like stress, anxiety, depression, relationships, trauma, and more.",
   },
   {
-    question: "Can I access therapy sessions online with DrPsych?",
+    question: "Can I do all my sessions online?",
     answer:
-      "Yes. DrPsych offers secure, video-based therapy and psychiatric consultations that you can attend from the comfort of your home.",
+      "Yes. Everything from assessments to therapy and psychiatry is done virtually — securely, via video.",
   },
   {
-    question: "How is DrPsych different from other therapy platforms?",
+    question: "What makes Dr.Psych different?",
     answer:
-      "DrPsych offers holistic care with expert-vetted professionals, affordable plans, confidentiality, and a stigma-free support environment across India.",
+      "Affordability. Language access. Human therapists who actually care. We’re here for real people, not just app users.",
   },
   {
-    question: "Do you offer psychiatric consultations with medication support?",
+    question: "Do you offer medication support?",
     answer:
-      "Yes, DrPsych provides access to certified psychiatrists who can assess, diagnose, and prescribe medication when needed — all online.",
+      "Yes. If needed, certified psychiatrists can provide online consultations and prescribe medication legally and safely.",
   },
   {
-    question: "How can I start my therapy journey on DrPsych?",
+    question: "How do I start?",
     answer:
-      "You can start by booking a session, filling a quick mental health intake form, and choosing a therapist based on your preferences and goals.",
+      "Pick a time, make the payment, fill a short form, and we’ll take care of the rest. No complex forms. No confusion.",
   },
   {
-    question: "Is my data safe and confidential with DrPsych?",
+    question: "Is my data protected?",
     answer:
-      "Absolutely. DrPsych uses encrypted platforms to ensure all personal information and session details remain private and secure.",
+      "Yes. All sessions are encrypted. We never share or sell your data.",
   },
   {
-    question: "Does DrPsych provide therapy for teenagers and young adults?",
+    question: "Do you offer support for teenagers?",
     answer:
-      "Yes, we offer specialized therapy for teens, guided by psychologists trained in adolescent and young adult mental health.",
+      "Yes. We have therapists trained specifically for teen and young adult mental health.",
   },
   {
-    question: "How much does therapy cost on DrPsych?",
+    question: "How much does therapy cost?",
     answer:
-      "DrPsych offers flexible pricing, with one-time session rates and discounted subscription plans to make quality mental health care affordable.",
+      "First session: ₹500. Regular sessions: ₹1000. Therapy plans are priced based on session count. All upfront — no hidden charges.",
   },
 ];
 

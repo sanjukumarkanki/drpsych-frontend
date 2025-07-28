@@ -1,0 +1,92 @@
+/* .rdp-root {
+  padding: 0 1.09rem;
+} */
+.rdp-caption_label {
+  font-size: 0.72rem;
+  color: var(--brandColor);
+}
+.rdp-months {
+  max-width: unset !important;
+}
+
+.rdp-month {
+  width: 100%;
+}
+.rdp-weekday {
+  color: var(--brandColor);
+}
+
+.rdp-day {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  text-align: center;
+  font-size: 1rem;
+}
+.availableDay {
+  background: var(--brandColor);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.rdp-day_button {
+  width: 2rem !important;
+  height: 2rem !important;
+  font-weight: 500;
+}
+.rdp-chevron {
+  fill: var(--brandColor);
+}
+.my-selected {
+  color: #fff;
+  border-radius: 50%;
+  background-color: var(--brandColor);
+}
+.my-available {
+  color: var(--brandColor) !important;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .rdp-months {
+    max-width: 13rem !important;
+    /* background-color: red; */
+  }
+  .rdp-month_caption {
+    height: 2rem;
+  }
+
+  .rdp-nav {
+    height: 2rem;
+  }
+
+  /*   
+  .rdp-root {
+    padding: 0 1.88rem;
+  } */
+  .rdp-caption_label {
+    font-size: 0.41rem;
+  }
+
+  .rdp-day {
+    width: 1rem !important;
+    height: 0rem !important;
+    text-align: center;
+    font-size: 0.61rem;
+  }
+  .rdp-weekday {
+    font-size: 0.5rem !important;
+    padding: 0 !important;
+  }
+  .rdp-day_button {
+    height: 1.2rem !important;
+    width: 1.2rem !important;
+  }
+  .rdp-button_next,
+  .rdp-button_previous {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.popup-overlay {
+  backdrop-filter: blur(6px); /* optional dark overlay */
+}

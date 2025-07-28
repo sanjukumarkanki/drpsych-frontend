@@ -1,0 +1,144 @@
+.therapistDasboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardBanner {
+  background-color: var(--brandColor);
+  color: #fff;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  position: relative;
+}
+.dashboardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+}
+.dashboardSubTitle {
+  font-size: 0.63rem;
+  font-weight: 400;
+  line-height: 0.87rem;
+  margin-bottom: 0.3rem;
+}
+
+.therapistDashboardImage {
+  display: none;
+}
+
+.dashboardTextContainer {
+  width: 100%;
+}
+.appointmentsContainer {
+  margin-top: 0.8rem;
+}
+.appointmentsContainerCards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.appointmentsContainerCard {
+  width: 6.7rem;
+  height: 5.5rem;
+  border-radius: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0.5rem 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.appointmentsContainerCardTitle {
+  font-size: var(--brandColor);
+}
+
+.appointmentTextContainer {
+  display: flex;
+  justify-content: flex-start;
+  /* flex-wrap: wrap; */
+}
+
+.CardImageContaienr {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--brandColor);
+  margin-right: 0.3rem;
+  margin-bottom: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.appointmentTextContainer > span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--brandColor);
+}
+
+.appointmentsContainerCard > p {
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 0.9rem;
+  color: var(--brandColor);
+}
+@media screen and (min-width: 768px) {
+  .therapistDashboardImage {
+    display: flex;
+    width: 6.3rem;
+    position: absolute;
+    right: 0;
+    z-index: 3;
+    top: 0;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+  .dashboardTextContainer {
+    width: 14rem;
+  }
+  .dashboardTitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+  .dashboardSubTitle {
+    font-size: 0.48rem;
+    line-height: 0.6rem;
+    margin-bottom: 0.2rem;
+  }
+  .appointmentsContainerCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr                      ;
+  }
+  .appointmentsContainerCard {
+    width: unset;
+    /* width: 10rem; */
+    height: 100%;
+    
+  }
+  .CardImageContaienr {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+  }
+  .appointmentTextContainer > span {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .CardImageContaienr {
+    margin-bottom: 0.4rem;
+  }
+  .appointmentsContainerCard > p {
+    font-size: 0.6rem;
+  }
+}

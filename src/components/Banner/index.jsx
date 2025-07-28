@@ -7,7 +7,7 @@ const Banner = () => {
       <div class="banner__right-container">
         <div data-aos="zoom-in-up" class="banner__image-container">
           <img
-            src="https://res.cloudinary.com/dnahum2gw/image/upload/v1751711648/doctors_banner_image_mzycko.webp"
+            src="https://res.cloudinary.com/deo74k78q/image/upload/v1753627637/WhatsApp_Image_2025-07-27_at_8.16.21_PM_kmyb1e.jpg"
             class="banner__image"
             alt="banner image"
           />
@@ -15,20 +15,16 @@ const Banner = () => {
       </div>
       <div class="banner__left-container">
         <h1 data-aos="fade-left" class="banner__title">
-          India's <span>Fastest-Growing Mental Health Care Platform</span> — Bringing
-          Affordable Therapy to Every Screen
+          India's <span> Mental Health Therapy Hub</span> — Bringing Affordable,
+          Accessible, and Always Here For You
         </h1>
         <p data-aos="fade-right" class="banner__description">
-          Where clinical expertise meets compassionate care — delivered
-          securely, instantly, and in your language across our growing
-          nationwide network.
+          Licensed therapists. Instant appointments. Sessions in your language.
+          Whether you’re anxious, overwhelmed, or just need someone to talk to —
+          Dr.Psych connects you to compassionate care from anywhere.
         </p>
         <div data-aos="fade-up" class="banner__btn-container d-flex">
-          <button
-            type="button"
-            onclick="openServicesForm('')"
-            class="banner__talk-to-expert"
-          >
+          <button type="button" class="banner__talk-to-expert">
             Book An Appointment
           </button>
           <button type="button" class="banner__watch-our-video">

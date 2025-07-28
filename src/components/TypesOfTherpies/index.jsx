@@ -1,63 +1,107 @@
-
+// File: TypesOfTherpies.jsx
+import React, { useState } from "react";
 import styles from "./index.module.css";
+import Popup from "reactjs-popup";
+// import "reactjs-popup/dist/index.css";
+import BookAppointment from "../BookAppointment";
+
+const therapyConfig = {
+  assessment: { title: "First-Time Assessment", price: 500 },
+  direct: { title: "One-on-One Therapy", price: 1000 },
+  guided: { title: "Guided Therapy Plan", price: 1000 },
+  teen: { title: "Teen Therapy (Under 18)", price: 0 },
+};
 
 export default function TypesOfTherpies() {
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupStep, setPopupStep] = useState("book");
+  const [popupProps, setPopupProps] = useState({});
+
+  const openPopup = (type) => {
+    setPopupProps({ ...therapyConfig[type], type });
+    setPopupStep(type === "teen" ? "consent" : "book");
+    setPopupOpen(true);
+  };
+
+  const renderCard = (type, icon, description, buttonText, cardClass) => (
+    <div
+      className={`${styles.card} ${cardClass}`}
+      onClick={() => openPopup(type)}
+    >
+      <h3 className={styles.cardTitle}>{therapyConfig[type].title}</h3>
+      <div className={styles.icon}>{icon}</div>
+      <p className={styles.cardDescription}>{description}</p>
+      <button className={styles.price}>{buttonText}</button>
+    </div>
+  );
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Therapy For A Better Life</h1>
       <p className={styles.description}>
-        What type of therapy are you looking for?
+        Find the kind of care that fits your needs.
       </p>
 
-
-
-      {/* Therapy Type Cards */}
       <div className={styles.cards}>
-        {/* First-Time Assessment */}
-        <div className={`${styles.card} ${styles.lightBlue}`}>
-          <h3 className={styles.cardTitle}>First-Time Assessment</h3>
-          <div className={styles.icon}>🩺</div>
-          <p className={styles.cardDescription}>
-            Start with a 25-minute session to understand your needs. A licensed
-            therapist will guide you on what’s best for you next.
-          </p>
-          <button className={styles.price}>₹500 / session</button>
-        </div>
-
-        {/* One-on-One Therapy */}
-        <div className={`${styles.card} ${styles.lightGreen}`}>
-          <h3 className={styles.cardTitle}>One-on-One Therapy</h3>
-          <div className={styles.icon}>📅</div>
-          <p className={styles.cardDescription}>
-            Already know what you need? Book a session directly with a certified
-            therapist.
-          </p>
-          <button className={styles.price}>₹1000 / session</button>
-        </div>
-
-        {/* Guided Therapy Plan */}
-        <div className={`${styles.card} ${styles.lightYellow}`}>
-          <h3 className={styles.cardTitle}>Guided Therapy Plan</h3>
-          <div className={styles.icon}>📈</div>
-          <p className={styles.cardDescription}>
-            Continue your healing journey with structured therapy sessions
-            recommended by your therapist.
-          </p>
-          <button className={styles.price}>₹1000 / session • 3–10 sessions</button>
-        </div>
-
-        {/* Teen Therapy */}
-        <div className={`${styles.card} ${styles.lightPeach}`}>
-          <h3 className={styles.cardTitle}>Teen Therapy (Under 18)</h3>
-          <div className={styles.icon}>🔞</div>
-          <p className={styles.cardDescription}>
-            If you’re under 18, this is the right place. Connect with our teen
-            therapy team for safe and supportive care.
-          </p>
-          <button className={styles.price}>Parental consent required</button>
-        </div>
+        {renderCard(
+          "assessment",
+          "🩺",
+          " 25-minute session with a therapist to understand your concerns and guide you on what’s next.",
+          "₹500 / session",
+          styles.lightBlue
+        )}
+        {renderCard(
+          "direct",
+          "📅",
+          " Talk to a certified therapist for deeper work on specific challenges — stress, anxiety, relationships, anything.",
+          "₹1000 / session",
+          styles.lightGreen
+        )}
+        {renderCard(
+          "guided",
+          "📈",
+          "Get a structured therapy roadmap based on your assessment. Designed for consistent growth.",
+          "₹1000 / session • 3–10 sessions",
+          styles.lightYellow
+        )}
+        {renderCard(
+          "teen",
+          "🔞",
+          " Specialized support for adolescents. Sessions are safe, non-judgmental, and led by therapists trained in teen psychology.",
+          "Parental consent required",
+          styles.lightPeach
+        )}
       </div>
+
+      <Popup open={popupOpen} onClose={() => setPopupOpen(false)} modal nested>
+        {popupStep === "consent" && (
+          <div style={{ padding: 20 }}>
+            <h3>Parental Consent Required</h3>
+            <p>Confirm that a parent/guardian has provided consent.</p>
+            <button onClick={() => setPopupStep("book")} style={buttonStyle}>
+              I Have Consent
+            </button>
+          </div>
+        )}
+
+        {popupStep === "book" && (
+          <BookAppointment
+            title={popupProps.title}
+            price={popupProps.price}
+            type={popupProps.type}
+            asPopup={true}
+            onComplete={() => setPopupOpen(false)}
+          />
+        )}
+      </Popup>
     </div>
   );
 }
+
+const buttonStyle = {
+  padding: "8px 16px",
+  backgroundColor: "#336780",
+  color: "#fff",
+  border: "none",
+  cursor: "pointer",
+};

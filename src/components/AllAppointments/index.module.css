@@ -1,0 +1,389 @@
+/* === Base Styles (Small devices: 22px root font) === */
+
+.appointmentsWrapper {
+  padding: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  font-size: 0.4rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--brandColor);
+}
+
+.popupHeading {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--brandColor);
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchBox,
+.statusFilter {
+  padding: 0.27rem 0.45rem;
+  border: 1px solid #ccc;
+  border-radius: 0.27rem;
+  font-size: 0.3rem;
+}
+
+.selectDateBtn {
+  padding: 0.3rem 0.6rem;
+  background-color: var(--brandColor);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.3rem;
+  cursor: pointer;
+  border: none;
+}
+
+.selectDateBtn:hover {
+  background-color: var(--brandColor);
+}
+
+.appointmentsTable {
+  width: 100%;
+  border-collapse: collapse;
+  /* margin-top: 1rem; */
+  font-size: 0.3rem;
+}
+
+.appointmentsTable th,
+.appointmentsTable td {
+  padding: 0.4rem;
+  text-align: left;
+}
+
+.appointmentsTable th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  background-color: #f4f4f4;
+  font-weight: bold;
+  font-size: 0.35rem;
+  color: var(--brandColor);
+  text-align: center;
+}
+
+.appointmentsTable td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+.scheduletime {
+  font-size: 0.35rem;
+}
+
+.patientName {
+  display: flex;
+
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar {
+  width: 1rem;
+  height: 1rem;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  font-size: 0.4rem;
+}
+
+.statusBadge {
+  padding: 0.18rem 0.45rem;
+  border-radius: 0.14rem;
+  font-size: 0.3rem;
+  font-weight: 600;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.statusAccepted {
+  background-color: #e6f4ea;
+  color: #34a853;
+}
+
+.statusCancelled {
+  background-color: #fce8e6;
+  color: #d93025;
+}
+
+.statusRescheduled {
+  background-color: #fff4e5;
+  color: #f9ab00;
+}
+
+.statusCompleted {
+  background-color: #e6f0fa;
+  color: var(--brandColor);
+}
+
+.joinBtn {
+  background-color: var(--brandColor);
+  color: white;
+  padding: 0.2rem 0.3rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.3rem;
+  display: inline-block;
+}
+
+.joinBtn:hover {
+  background-color: transparent;
+  border: solid 1px var(--brandColor);
+  color: var(--brandColor);
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.searchInput {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.hiddenDateInput {
+  visibility: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 1rem;
+  color: #888;
+  padding: 2rem 0;
+}
+
+/* Edit Button Style */
+.editBtn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.45rem;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.statusDropdown {
+  /* padding: 5px; */
+
+  padding: 0.1rem 0rem;
+  border-radius: 0.14rem;
+  font-size: 0.3rem;
+  font-weight: 600;
+  color: var(--brandColor);
+  border: solid 1px var(--brandColor);
+}
+
+.editStatusContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0.3rem !important;
+}
+
+/* === Medium and Larger Devices (≥768px, root font = 53px) === */
+@media (min-width: 768px) {
+  .heading {
+    font-size: 0.55em; /* Adjusted for larger root font */
+  }
+
+  .popupHeading {
+    font-size: 0.85em; /* Adjusted for larger root font */
+  }
+
+  .appointmentsTable th {
+    font-size: 0.4rem;
+  }
+    .appointmentsTable tbody tr td {
+    font-size: 0.48rem;
+  }
+  .scheduletime {
+    font-size: 0.38rem;
+  }
+  .patientName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    position: relative;
+    font-size: 0.4rem;
+  }
+
+  .avatar {
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 0.48rem;
+    position: absolute;
+    left: 0.2rem;
+  }
+
+  .statusBadge {
+    font-size: 0.38rem;
+    padding: 0.12rem 0.3rem;
+  }
+
+  .joinBtn {
+    font-size: 0.38rem;
+    padding: 0.2rem 0.4rem;
+  }
+  .editStatusContainer {
+    padding: 0.7rem 0.3rem !important;
+  }
+
+  .searchInput {
+    font-size: 0.45rem;
+  }
+
+  .noResults {
+    font-size: 0.5rem;
+  }
+  .statusFilter {
+    border-radius: 0.2rem;
+    font-size: 0.35em;
+  }
+  .selectDateBtn {
+    padding: 0.3rem 1.2rem;
+    font-size: 0.35rem;
+    border-radius: 0.2rem;
+  }
+}
+.popupContainer {
+  background-color: #fff;
+  border-radius: 0.3rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: "Inter", sans-serif;
+  color: #333;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+}
+
+.popupContainer p strong {
+  font-size: 0.6rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  width: 2.3rem;
+  display: inline-block;
+}
+
+.popupContainer > p {
+  font-size: 0.55rem;
+  font-weight: 400;
+  margin: 0 0 0.35rem 0;
+}
+
+.popupContainer strong {
+  color: #555;
+}
+
+.statusDropdown {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ddd;
+  font-size: 0.4rem;
+  background-color: #f9f9f9;
+  margin-bottom: 0.5rem;
+}
+
+.popupActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+.saveBtn {
+  flex: 1;
+  padding: 0.35rem;
+  background-color: var(--brandColor);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.55rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 0.35rem;
+  background-color: #f5f5f5;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.cancelBtn:hover {
+  background-color: #eee;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .popupContainer {
+    padding: 1rem 1.2rem;
+  }
+  .popupHeading {
+    font-size: 0.5rem;
+  }
+  .popupContainer > p {
+    font-size: 0.4rem;
+    margin: 0 0 0.2rem 0;
+  }
+
+  .popupContainer > p > strong {
+    font-size: 0.43rem;
+  }
+  .popupActions {
+    margin-top: 0.5rem;
+  }
+  .saveBtn,
+  .cancelBtn {
+    padding: 0.25rem;
+    border-radius: 0.2rem;
+    font-size: 0.3rem;
+  }
+}

@@ -10,43 +10,43 @@ const steps = [
   {
     id: 1,
     title: "Choose Your Time",
-    description:
-      "Select a convenient time that works best for your schedule and lifestyle.",
+    description: "Pick a time that suits your life — day or night.",
     icon: <MdAccessTime />,
   },
   {
     id: 2,
     title: "Make Payment",
-    description: "Secure your session by making a quick and easy payment.",
+    description: "Quick and secure. Takes less than a minute.",
     icon: <MdOutlinePayment />,
   },
   {
     id: 3,
     title: "Get Matched to a Therapist",
     description:
-      "Our system pairs you with therapists who specialize in your specific needs.",
+      "We pair you with someone who understands your unique challenges.",
     icon: <FaUserFriends />,
   },
   {
     id: 4,
     title: "Connect Securely",
-    description:
-      "Meet with your therapist through our secure and private virtual platform.",
+    description: "Join your session on a private, encrypted video platform.",
     icon: <MdOutlineSecurity />,
   },
   {
     id: 5,
     title: "Continue Your Healing Journey",
     description:
-      "Work with your therapist to develop strategies for long-term growth and healing.",
-    icon: <FaSmile   />,
+      " If you choose to continue, your therapist will build a plan with you. One step at a time.",
+    icon: <FaSmile />,
   },
 ];
 
 const HowItWorks = () => {
   return (
     <div className={styles.wrapper}>
-      <h2 data-aos="zoom-in-right" className={styles.title}>Tell Us About Yourself</h2>
+      <h2 data-aos="zoom-in-right" className={styles.title}>
+        How it works
+      </h2>
       <p data-aos="zoom-in-left" className={styles.subtitle}>
         Begin your healing journey with us. We're here to connect you with the
         right therapist who understands your unique needs.

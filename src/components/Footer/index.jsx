@@ -11,20 +11,16 @@ const Footer = () => {
             <span></span>
             <small className="footer-main-heading-underline"></small>
             <p>
-              To make mental healthcare accessible, affordable, and stigma-free
-              across India by: – Empowering individuals to take control of their
-              emotional well-being – Providing expert support anytime, anywhere
+              Making mental health support easy,
+              <br />
+              affordable, and stigma-free for every Indian.
             </p>
             <h2>
               <a className="footer__call-btn" href="tel:18001202676">
-                <i className="fas fa-phone footer__call-icon">
-                  &nbsp;
-                  <b
-
-                  >
-                    123456780
-                  </b>
-                </i>
+                <b>+91 98485 27967</b>
+                {/* <i className="fas fa-phone footer__call-icon"> */}
+                {/* &nbsp; */}
+                {/* </i> */}
               </a>
             </h2>
           </div>
@@ -32,24 +28,21 @@ const Footer = () => {
 
         <div className="our-services-main-container">
           <div className="our-services-container">
-            <h4>OUR SERVICES</h4>
+            <h4>QUICK LINKS</h4>
             <span></span>
             <small className="footer-main-heading-underline"></small>
             <ul>
               <li>
-                <a href="https://www.cioncancerclinics.com/medical-oncology">
-                  Home
-                </a>
+                <a href="#">HOME</a>
               </li>
               <li>
-                <a href="https://www.cioncancerclinics.com/surgical-oncology">
-                  About us
-                </a>
+                <a href="#">ABOUT US</a>
               </li>
               <li>
-                <a href="https://www.cioncancerclinics.com/radiation-oncology">
-                  Contact us
-                </a>
+                <a href="#">TERMS & CONDITIONS</a>
+              </li>
+              <li>
+                <a href="#">PRIVACY POLICY</a>
               </li>
             </ul>
           </div>
@@ -57,19 +50,15 @@ const Footer = () => {
 
         <div className="quick-links-main-container">
           <div className="quick-links-container">
-            <h4>QUICK LINKS</h4>
+            <h4>OUR SERVICES</h4>
             <span></span>
             <small className="footer-main-heading-underline"></small>
             <ul>
               <li>
-                <a href="#">
-                  TERMS & CONDITIONS
-                </a>
+                <a href="#">TERMS & CONDITIONS</a>
               </li>
               <li>
-                <a href="#">
-                  PRIVACY POLICY
-                </a>
+                <a href="#">PRIVACY POLICY</a>
               </li>
             </ul>
           </div>

@@ -4,7 +4,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 3rem 0 0  0;
+  margin: 3rem 0 0 0;
+  height: 20rem;
 }
 .container {
   width: 95%;
@@ -12,14 +13,15 @@
   margin: 1rem 0;
   /* padding: 30px; */
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  border-top: 1px solid var(--brandColor);
+  border-radius: none;
   border-radius: 0.8rem;
   box-shadow: 0 8px 1rem rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0.8rem;
+  padding: 0.6rem 0.8rem 1.5rem 0;
 }
 
 .title {
@@ -30,12 +32,15 @@
   color: var(--brandColor);
 }
 
+.title span {
+  color: #252525;
+}
+
 .form {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 1rem;
 }
 
 .nameInput {
@@ -101,21 +106,44 @@
   width: 100%;
 }
 
+.loginText {
+  font-size: 0.62rem;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+.loginText > span {
+  color: var(--brandColor);
+  font-weight: 700;
+  margin-left: 0.15rem;
+
+  cursor: pointer;
+}
+.loginText > span:hover {
+  text-decoration: underline;
+}
 @media screen and (min-width: 768px) {
+  .wrapper {
+    height: 13rem;
+  }
   .title {
     font-size: 0.7rem;
   }
   .container {
     width: 13rem;
-    border-radius: 0.5rem;
-    padding: 0.3rem 1rem;
+    /* border-radius: 0.5rem; */
+    padding: 0.5rem 1rem 1rem 1rem;
     margin: 0.1rem 0 0 0;
+    border-radius: 0.5rem;
   }
   .nameInput {
     height: 1.3rem;
     font-size: 0.3rem;
   }
 
+  .loginText {
+    font-size: 0.42rem;
+  }
   .nameInput::placeholder,
   .nameInput,
   .textareaInput,
@@ -126,9 +154,7 @@
     width: 5.3rem;
   }
   .form {
-    margin-top: 0.5rem;
-    flex-direction: row;
-    flex-wrap: wrap;
+    margin-top: 0;
     gap: 0.3rem 0.3rem;
   }
 

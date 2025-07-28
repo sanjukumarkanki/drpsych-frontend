@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { webUrl, parsifiedData } from "../../common";
 import { TailSpin } from "react-loader-spinner";
 import AppContext from "../../context/AppContext";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Register = () => {
       const res = await fetch(`${webUrl}/api/auth/request-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, loginType: "user" }),
       });
 
       if (res.ok) {
@@ -58,22 +59,29 @@ const Register = () => {
   };
 
   const handleVerifyOtp = async (otp) => {
-    if (otp !== generatedOtp) return alert("Invalid OTP");
+    if (otp !== generatedOtp) return toast.error("Invalid OTP");
     try {
       const res = await fetch(`${webUrl}/api/auth/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: formData.email, otpCode: otp }),
+        body: JSON.stringify({
+          email: formData.email,
+          otpCode: otp,
+          loginType: "user",
+        }),
       });
 
       if (res?.ok) {
         const data = await res.json();
         Cookies.set("authToken", JSON.stringify(data), { expires: 7 });
         setUserData(data?.user);
-        alert("Registration successful!");
-        navigate("/home");
-      } else alert("Registration failed");
+        toast.success("Login Success");
+        navigate("/");
+      } else {
+        toast.error("Registration Failed");
+      }
     } catch (err) {
+      toast.error("Verification error:", err);
       console.error("Verification error:", err);
     }
   };
@@ -157,6 +165,10 @@ const Register = () => {
                 "Send OTP"
               )}
             </button>
+            <p className={styles.loginText}>
+              Don't You Have An Account
+              <span onClick={() => navigate("/login")}>Login Here</span>
+            </p>
           </form>
         ) : (
           <OtpVerification

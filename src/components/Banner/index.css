@@ -210,13 +210,13 @@ div:where(.swal2-container) div:where(.swal2-popup) {
   }
   .banner {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 1rem 1.88rem;
-    gap: 0;
+    gap: 0rem 1.1rem;
   }
   .banner__title {
-    font-size: 0.83rem;
+    font-size: 0.92rem;
     line-height: 128%;
     margin-bottom: 0.15rem;
   }
@@ -224,18 +224,18 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     padding: 0;
     width: 16.6rem;
   }
-  .banner__right-container{
+  .banner__right-container {
     order: 2;
   }
   .banner__description {
-    font-size: 0.45rem;
+    font-size: 0.55rem;
     line-height: 150%;
     margin-bottom: 0.9rem;
   }
   .banner__talk-to-expert {
     height: unset;
     font-size: 0.377rem;
-    padding: .4rem .5rem;
+    padding: 0.4rem 0.5rem;
   }
   .banner__watch-our-video {
     width: 4.64rem;
@@ -251,7 +251,7 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     font-size: 0.377rem;
   }
   .banner__image-container {
-    width: 10.26rem;
+    width: 13.16rem;
     height: 13.45rem;
   }
 

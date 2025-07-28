@@ -1,8 +1,16 @@
 // src/App.jsx
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import styles from "./App.module.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+
 import socket from "./utils/socket";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import useAuthStore from "./stores/authStore";
 import { useEffect } from "react";
@@ -17,6 +25,16 @@ import Register from "./pages/Register";
 import AppContext from "./context/AppContext";
 import { parsifiedData } from "./common/index.js";
 import PayButton from "./components/PayButton/index.jsx";
+import Sidebar from "./components/Sidebar/index.jsx";
+
+import "./App.css";
+import TherpistDashboard from "./pages/TherpistDashboard/index.jsx";
+import AllAppointments from "./components/AllAppointments/index.jsx";
+import TherapistRegistration from "./pages/TherapistRegistration/index.jsx";
+import ThankYou from "./pages/Thankyou/index.jsx";
+import TherapistLogin from "./pages/TherapistLogin/index.jsx";
+import ProtectedRoute from "./components/ProtectedRoute/index.jsx";
+import AvailabilityForm from "./components/Availability/index.jsx";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
 
@@ -24,6 +42,19 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState("");
+  const location = useLocation();
+  const showNavbarRoutes = [
+    "/",
+    "/login",
+    "/register",
+    "/aboutus",
+    "/contactus",
+    "/about",
+    "/services",
+    "/contact",
+    "/therapist-registration",
+  ];
+  const showNavbar = showNavbarRoutes.includes(location.pathname);
 
   useEffect(() => {
     const token = parsifiedData;
@@ -59,29 +90,58 @@ export default function App() {
     return obj;
   };
 
-  // useEffect(() => {
-  //   AOS.init({
-  //     duration: 1000,
-  //     once: false,
-  //   });
-  // }, []);
-
-  // utils/auth.js
-
   return (
-    <div className={styles.appContainer}>
+    <div
+      className="appContainer"
+      style={{
+        display: "flex",
+        flexDirection: !showNavbar ? "row" : "column",
+      }}
+    >
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
       <AppContext.Provider value={{ getOptions, userData, setUserData }}>
-        <BrowserRouter>
-          <Navbar />
+        {showNavbar && <Navbar />}
+        {!showNavbar && <Sidebar />}
+        <div
+          className={
+            !showNavbar ? "dashboard-wrapper app-wrapper" : "app-wrapper"
+          }
+        >
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/therapist-registration"
+              element={<TherapistRegistration />}
+            />
+            <Route path="/thnak-you" element={<ThankYou />} />
+            <Route
+              path="/admin-panel"
+              element={
+                <ProtectedRoute requiredRole="therapist">
+                  <AdminPanel />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/therapist-dashboard"
+              element={<TherpistDashboard />}
+            />
+            <Route path="/availability" element={<AvailabilityForm />} />
+            <Route path="/all-appointments" element={<AllAppointments />} />
             <Route path="/payment" element={<PayButton />} />
             <Route path="*" element={<p>404 Not Found</p>} />
           </Routes>
-        </BrowserRouter>
+        </div>
       </AppContext.Provider>
     </div>
   );

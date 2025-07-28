@@ -1,0 +1,179 @@
+/* index.module.css */
+
+.formContainer {
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.formContainerWrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+h2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.5rem;
+  color: var(--brandColor);
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.5rem;
+  color: var(--brandColor);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.35rem;
+  border-radius: 0.2rem;
+  border: 2px solid #ccc;
+  /* margin-bottom: 1rem; */
+  font-size: 0.4rem;
+  transition: border 0.2s ease;
+  resize: none;
+}
+
+section::placeholder {
+  font-size: 0.4rem;
+}
+
+.inputGroup {
+  width: 100%;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--brandColor);
+  outline: none;
+}
+
+.checkboxGroup,
+.radioGroup {
+  margin-bottom: 1.5rem;
+}
+
+.checkboxGroup label,
+.radioGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.fileInput {
+  border: 2px dashed #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.fileInput:hover {
+  border-color: #4b91f1;
+}
+
+.fileInput input {
+  display: none;
+}
+
+.uploadLabel {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.submitBtn {
+  background-color: #4b91f1;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #3a78d4;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.required {
+  color: red;
+}
+
+.formContainer {
+  padding: 1.2rem;
+}
+
+.submitBtn {
+  width: 100%;
+}
+
+.submitButton {
+  width: 100%;
+  height: 1.8rem;
+  background-color: var(--brandColor);
+  border-radius: 0.3rem;
+  margin: 1rem 0 0 0;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 768px) {
+  h2 {
+    margin: 0 0 0.5rem 0;
+  }
+  .formContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    border-radius: 0.2rem;
+    padding: 0.8rem;
+  }
+  .formContainerWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .inputGroup {
+    /* width: 8.5rem; */
+  }
+  .inputGroup label {
+    font-size: 0.4rem;
+  }
+  input,
+  select,
+  textarea {
+    padding: 0.3rem;
+    border-radius: 0.1rem;
+  }
+  .inputGroup select {
+    width: 100%;
+  }
+  .submitButton {
+    width: 11rem;
+    height: 1.5rem;
+    font-size: 0.5rem;
+  }
+}

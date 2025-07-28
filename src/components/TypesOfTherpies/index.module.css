@@ -48,8 +48,6 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-
-
 .cardTitle {
   font-size: 0.9rem;
   font-weight: 700;
@@ -114,7 +112,12 @@
     padding: 0.8rem 0.8rem 1.8rem 0.8rem;
     border-radius: 0.3rem;
   }
-
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.7rem 20px;
+    text-align: center;
+  }
   .cardTitle {
     font-size: 0.6rem;
     line-height: 0.8rem;

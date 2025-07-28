@@ -59,7 +59,7 @@ a {
 }
 
 .nav__logo > img {
-height: 5.45rem;
+  height: 5.45rem;
 }
 
 .nav__logo i {
@@ -327,7 +327,7 @@ height: 5.45rem;
     height: 2.67rem;
     display: flex;
     justify-content: space-between;
-         padding: 0.3rem 1.88rem;
+    padding: 0.3rem 1.88rem;
   }
   .nav__toggle {
     display: none;
@@ -409,5 +409,221 @@ height: 5.45rem;
   .search-box > input::placeholder,
   .search-input i {
     font-size: 0.41rem;
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: 0px 0.09rem 0.54rem 0px #0000001f;
+  z-index: 10;
+  height: 3.63rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.8rem;
+}
+
+.navbar__logo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.navbar__links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  background-color: var(--brandColor);
+  width: 100%;
+  padding: 0.3rem;
+}
+
+.navbar__links > a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem;
+  color: var(--white);
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.navbar__links--active {
+  display: flex;
+}
+
+.navbar__toggle {
+  display: flex;
+}
+
+/* From Uiverse.io by cssbuttons-io */
+.LoginButton {
+  padding: 0.3rem 1.5rem;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--brandColor);
+  border: none;
+  border-radius: 1rem;
+  /* box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4); */
+
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.LoginButton:hover {
+  background-color: #23c483;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.LoginButton:active {
+  transform: translateY(-1px);
+}
+
+/* Container for the profile and menu */
+.profile-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Profile button */
+.LoginButton {
+  padding: 10px 20px;
+  background-color: #101820;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.LoginButton:hover {
+  background-color: #1a2530;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Dropdown links */
+.dropdown-menu a,
+.dropdown-menu p {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+  color: #101820;
+  font-weight: 500;
+}
+
+/* Optional: fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (min-width: 768px) {
+  .navbar {
+    height: 2.4rem;
+  }
+
+  .navbar__links {
+    display: flex;
+    background-color: transparent;
+    gap: 1.3rem;
+    color: var(--brandColor);
+    position: unset;
+    display: flex;
+    width: unset;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar__links a {
+    color: var(--brandColor);
+    font-size: 0.45rem;
+  }
+  .navbar__links > a:hover {
+    color: #252525;
+    text-decoration: underline;
+  }
+
+  /* .navbar__links--active {
+    display: none;
+  } */
+
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  /* From Uiverse.io by cssbuttons-io */
+  .LoginButton {
+    padding: 0.8em 0.8rem;
+    font-size: 0.3rem;
+    text-transform: uppercase;
+
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .LoginButton:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+
+  .LoginButton:active {
+    transform: translateY(-1px);
   }
 }

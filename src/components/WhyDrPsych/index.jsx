@@ -8,10 +8,10 @@ const contentData = [
       "https://res.cloudinary.com/dnahum2gw/image/upload/v1751707517/Group_1171275192_1_dgmbdo.png",
     title: "Why DrPsych Is Different – Instant Access",
     points: [
-      "On-Demand Support: Book a therapist instantly, no waiting required",
-      "24/7 Availability: Sessions even during nights and weekends",
-      "Crisis-Ready: Access help when you need it most",
-      "Fast Relief: Immediate support, no long appointment delays",
+      "No Waiting: Book and talk to a therapist as soon as today.",
+      "Always Available: Sessions during nights and weekends too.",
+      "Crisis-Ready: When things get heavy, help is here.",
+      "Immediate Relief: Therapy shouldn’t take weeks to begin.",
     ],
   },
   {
@@ -20,10 +20,10 @@ const contentData = [
       "https://res.cloudinary.com/dnahum2gw/image/upload/v1751707515/Group_1171275168_2_e1zpno.jpg",
     title: "Why DrPsych Is Different – Smart & Secure",
     points: [
-      "Intelligent Matching: Get paired with the right specialist using AI",
-      "Confidential Platform: End-to-end encrypted sessions",
-      "Multilingual Care: Support available in your preferred language",
-      "Private by Design: Your identity and records are always protected",
+      "AI-Based Matching: We help you find the right therapist from the start.",
+      "Encrypted Sessions: Your privacy isn’t optional — it’s built in.",
+      "Languages You Speak: English, Hindi, Tamil, Telugu, Kannada, and more.",
+      "Data Safe by Design: Nothing leaves our secure system without your consent.",
     ],
   },
   {
@@ -32,10 +32,10 @@ const contentData = [
       "https://res.cloudinary.com/dnahum2gw/image/upload/v1751707515/Group_1171275191_1_pxmsag.png",
     title: "Why DrPsych Is Different – Built for Real Life",
     points: [
-      "Fully Virtual: Therapy that fits your schedule and lifestyle",
-      "Accessible to All: Affordable sessions with flexible pricing",
-      "For Everyone: Individuals, families, students, and companies",
-      "Real Impact: Measurable improvement in emotional wellbeing",
+      "100% Virtual: No traffic. No waiting rooms.",
+      "Affordable Pricing: Mental health help that doesn’t break the bank.",
+      "For Everyone: Students, professionals, parents, seniors.",
+      "Proven Outcomes: Measurable growth. Real change.",
     ],
   },
 ];
