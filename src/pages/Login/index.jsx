@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import OtpVerification from "../../components/VerifyOtp";
 import Cookies from "js-cookie";
-import { webUrl } from "../../common";
+import { parsifiedData, webUrl } from "../../common";
 import { TailSpin } from "react-loader-spinner";
 import AppContext from "../../context/AppContext";
 import { toast } from "react-toastify";
@@ -18,9 +18,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = Cookies.get("authToken");
-    if (token) {
-      navigate("/");
+    try {
+      if (parsifiedData?.token) {
+        navigate(
+          parsifiedData.user?.role === "therapist"
+            ? "/therapist-dashboard"
+            : "/"
+        );
+      }
+    } catch (err) {
+      Cookies.remove("authToken"); //  Remove bad token
     }
   }, [navigate]);
 
@@ -65,12 +72,13 @@ const Login = () => {
       if (res.ok) {
         const data = await res.json();
         Cookies.set("authToken", JSON.stringify(data), { expires: 7 });
-        setUserData(data.user);
+        setUserData(data);
         toast.success("Login Success");
         if (data?.user?.role === "user") {
           navigate("/");
         } else {
-          navigate("/therapist-dashboard");
+          console.log("dashboard");
+          window.location.href = "/therapist-dashboard";
         }
       } else {
         toast.success("Login Failed");

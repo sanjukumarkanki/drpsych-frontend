@@ -1,27 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import { DayPicker } from "react-day-picker";
+import { format, startOfToday } from "date-fns";
+
 import "react-day-picker/dist/style.css";
 import "./index.css";
 import AppContext from "../../context/AppContext";
 import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
+import { webUrl } from "../../common";
 
-const generateTimeSlots = (startTime = "08:00", endTime = "17:00") => {
+// Generate time slots
+const generateTimeSlots = (start = "08:00", end = "17:00") => {
   const slots = [];
-  const start = new Date(`1970-01-01T${startTime}:00`);
-  const end = new Date(`1970-01-01T${endTime}:00`);
-
-  while (start < end) {
-    const hours = start.getHours();
-    const minutes = start.getMinutes();
-    const isPM = hours >= 12;
+  const startTime = new Date(`1970-01-01T${start}:00`);
+  const endTime = new Date(`1970-01-01T${end}:00`);
+  while (startTime < endTime) {
+    const hours = startTime.getHours();
+    const minutes = startTime.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
     const formattedHour = hours % 12 === 0 ? 12 : hours % 12;
     const formattedMinutes = minutes.toString().padStart(2, "0");
-    const ampm = isPM ? "PM" : "AM";
     slots.push(`${formattedHour}:${formattedMinutes} ${ampm}`);
-    start.setMinutes(start.getMinutes() + 30);
+    startTime.setMinutes(startTime.getMinutes() + 30);
   }
-
   return slots;
 };
 
@@ -31,25 +32,55 @@ const DoctorAvailabilitySelector = () => {
   const [selectedDates, setSelectedDates] = useState([]);
   const [selectedTimesByDate, setSelectedTimesByDate] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const { userData } = useContext(AppContext);
+  const [therapistAvailability, setTherapistAvailability] = useState([]);
+  const { userData, getOptions } = useContext(AppContext);
+
+  // Fetch availability once
+  useEffect(() => {
+    const fetchAvailability = async () => {
+      try {
+        const response = await fetch(
+          `${webUrl}/api/therapist-availability/availability-by-id`,
+          getOptions("POST", { therapistId: userData?.user?._id })
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setTherapistAvailability(data?.data || []);
+        } else {
+          throw new Error();
+        }
+      } catch {
+        toast.error("Failed to get available dates");
+      }
+    };
+    fetchAvailability();
+  }, [userData]);
+
+  // Create a Map for fast slot access
+  const availabilityMap = useMemo(() => {
+    const map = new Map();
+    therapistAvailability.forEach(({ date, slots }) => {
+      const dateKey = format(new Date(date), "yyyy-MM-dd");
+      map.set(
+        dateKey,
+        slots.map((s) => s.time)
+      );
+    });
+    return map;
+  }, [therapistAvailability]);
 
   const toggleTimeSlot = (dateStr, time) => {
     setSelectedTimesByDate((prev) => {
-      const current = prev[dateStr] || [];
-      const updated = current.includes(time)
-        ? current.filter((t) => t !== time)
-        : [...current, time];
+      const updated = prev[dateStr]?.includes(time)
+        ? prev[dateStr].filter((t) => t !== time)
+        : [...(prev[dateStr] || []), time];
       return { ...prev, [dateStr]: updated };
     });
   };
 
-  const formatDate = (date) => date.toISOString().split("T")[0];
-
   const handleSubmit = async () => {
-    // Replace with real ID
     const therapistId = userData?.user?._id;
-
-    const finalAvailability = Object.entries(selectedTimesByDate).map(
+    const availability = Object.entries(selectedTimesByDate).map(
       ([date, times]) => ({
         date,
         timeSlots: times.map((time) => ({ time, isBooked: false })),
@@ -58,31 +89,25 @@ const DoctorAvailabilitySelector = () => {
 
     try {
       setIsLoading(true);
-      const res = await fetch(
-        "http://localhost:3005/api/therapist-availability/create",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            therapistId,
-            availability: finalAvailability,
-          }),
-        }
-      );
+      const res = await fetch(`${webUrl}/api/therapist-availability/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ therapistId, availability }),
+      });
+
       const data = await res.json();
       if (res.ok) {
         toast.success("Availability saved successfully!");
         setSelectedDates([]);
         setSelectedTimesByDate({});
-        setIsLoading(false);
       } else {
-        setIsLoading(false);
-        toast.err("Error: " + data.error);
-      } 
-    } catch (err) {
-      toast.error("Submission failed:", err);
+        toast.error("Error: " + data?.error);
+      }
+      setIsLoading(false);
+    } catch {
+      toast.error("Submission failed");
+      setIsLoading(false);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -94,54 +119,80 @@ const DoctorAvailabilitySelector = () => {
         <div className="leftCalendar">
           <DayPicker
             mode="multiple"
+            disabled={{ before: startOfToday() }}
+            modifiers={{
+              available: therapistAvailability.map((d) => new Date(d.date)),
+            }}
+            modifiersClassNames={{ available: "available-date" }}
             selected={selectedDates}
-            onSelect={setSelectedDates}
+            onSelect={(dates) => setSelectedDates(dates || [])}
           />
         </div>
 
         <div className="rightSlots">
-          {selectedDates.map((date) => {
-            const dateStr = formatDate(date);
-            return (
-              <div key={dateStr} className="datetimeSelector">
-                <h3>{dateStr}</h3>
-                <div className="timeSlotContainer">
-                  {TIME_SLOTS.map((time) => {
-                    const isSelected =
-                      selectedTimesByDate[dateStr]?.includes(time);
-                    return (
-                      <button
-                        key={time}
-                        onClick={() => toggleTimeSlot(dateStr, time)}
-                        className={`timeSlotBtn ${
-                          isSelected ? "selected" : ""
-                        }`}
-                      >
-                        {time}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
+          {selectedDates?.length ? (
+            selectedDates?.map((date) => {
+              const dateStr = format(date, "yyyy-MM-dd");
+              const availableTimes = availabilityMap.get(dateStr) || [];
 
-          {selectedDates.length > 0 && (
-            <div style={{ marginTop: "20px" }}>
-              <button
-                disabled={isLoading}
-                className="saveBtn"
-                onClick={handleSubmit}
-              >
-                {isLoading ? (
-                  <TailSpin width={30} height={20} color="#fff" />
-                ) : (
-                  " Save Availability"
-                )}
-              </button>
-            </div>
+              return (
+                <div key={dateStr} className="datetimeSelector">
+                  <h3>{format(date, "dd MMM yyyy")}</h3>
+                  <div className="timeSlotContainer">
+                    {TIME_SLOTS.map((time) => {
+                      const isExisting = availableTimes.includes(time);
+                      const isSelected =
+                        selectedTimesByDate[dateStr]?.includes(time);
+
+                      return (
+                        <button
+                          key={time}
+                          onClick={() => {
+                            if (!isExisting) toggleTimeSlot(dateStr, time);
+                          }}
+                          className={`timeSlotBtn ${
+                            isExisting ? "existing-slot" : ""
+                          } ${isSelected ? "selected" : ""}`}
+                          style={{
+                            cursor: !isExisting ? "pointer" : "not-allowed",
+                            border: isSelected
+                              ? "2px solid "
+                              : isExisting
+                              ? "1px solid red"
+                              : "1px solid #ccc",
+                            backgroundColor: isSelected
+                              ? "#336780"
+                              : isExisting
+                              ? "red"
+                              : "#fff",
+                            color: isExisting ? "#fff" : "#000",
+                            pointerEvents: isExisting ? "none" : "auto",
+                          }}
+                        >
+                          {time}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <p className="pleaseSelectText">
+              Please Select The dates you want to schedule
+            </p>
           )}
         </div>
+      </div>
+
+      <div style={{ textAlign: "center", marginTop: "1rem" }}>
+        <button onClick={handleSubmit} className="saveBtn" disabled={isLoading}>
+          {isLoading ? (
+            <TailSpin height={20} width={20} color="#fff" />
+          ) : (
+            "Save Availability"
+          )}
+        </button>
       </div>
     </>
   );

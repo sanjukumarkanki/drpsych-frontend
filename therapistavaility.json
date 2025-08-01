@@ -1,0 +1,29 @@
+[
+  {
+    "therapistId": "688601d5e2b051154709bb12",
+    "date": "2025-08-01",
+    "timeSlots": [
+      { "time": "09:00", "isBooked": false },
+      { "time": "10:00", "isBooked": false },
+      { "time": "11:00", "isBooked": false }
+    ]
+  },
+  {
+    "therapistId": "688601d5e2b051154709bb12",
+    "date": "2025-08-02",
+    "timeSlots": [
+      { "time": "14:00", "isBooked": false },
+      { "time": "15:30", "isBooked": false },
+      { "time": "17:00", "isBooked": false }
+    ]
+  },
+  {
+    "therapistId": "688601d5e2b051154709bb12",
+    "date": "2025-08-03",
+    "timeSlots": [
+      { "time": "08:30", "isBooked": false },
+      { "time": "10:00", "isBooked": true },
+      { "time": "11:30", "isBooked": false }
+    ]
+  }
+]

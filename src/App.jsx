@@ -1,12 +1,6 @@
 // src/App.jsx
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import socket from "./utils/socket";
 import { ToastContainer } from "react-toastify";
@@ -35,13 +29,15 @@ import ThankYou from "./pages/Thankyou/index.jsx";
 import TherapistLogin from "./pages/TherapistLogin/index.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/index.jsx";
 import AvailabilityForm from "./components/Availability/index.jsx";
+import TherapistDashboard from "./pages/TherpistDashboard/index.jsx";
+import { useAuth } from "./hooks/useAuth.js";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState("");
+  const { userData, setUserData } = useAuth();
   const location = useLocation();
   const showNavbarRoutes = [
     "/",
@@ -55,13 +51,7 @@ export default function App() {
     "/therapist-registration",
   ];
   const showNavbar = showNavbarRoutes.includes(location.pathname);
-
-  useEffect(() => {
-    const token = parsifiedData;
-    if (token) {
-      setUserData(token);
-    }
-  }, []);
+  console.log(userData, "userData");
 
   const getOptions = (
     method,
@@ -69,7 +59,9 @@ export default function App() {
     token_needed = true,
     isFile = false
   ) => {
-    let token = userData?.token;
+    console.log(userData, "userData2");
+    const token = userData?.token;
+
     let obj = {
       method,
       headers: {
@@ -92,6 +84,7 @@ export default function App() {
 
   return (
     <div
+      id="therapbanner"
       className="appContainer"
       style={{
         display: "flex",
@@ -134,10 +127,28 @@ export default function App() {
             />
             <Route
               path="/therapist-dashboard"
-              element={<TherpistDashboard />}
+              element={
+                <ProtectedRoute requiredRole="therapist">
+                  <TherapistDashboard />
+                </ProtectedRoute>
+              }
             />
-            <Route path="/availability" element={<AvailabilityForm />} />
-            <Route path="/all-appointments" element={<AllAppointments />} />
+            <Route
+              path="/availability"
+              element={
+                <ProtectedRoute requiredRole="therapist">
+                  <AvailabilityForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/all-appointments"
+              element={
+                <ProtectedRoute requiredRole="therapist">
+                  <AllAppointments />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/payment" element={<PayButton />} />
             <Route path="*" element={<p>404 Not Found</p>} />
           </Routes>

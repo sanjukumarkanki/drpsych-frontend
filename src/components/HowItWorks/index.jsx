@@ -62,8 +62,9 @@ const HowItWorks = () => {
           </div>
         ))}
       </div>
-
-      <button className={styles.button}>Start Your Journey Today</button>
+      <a href="#therapbanner">
+        <button className={styles.button}>Start Your Journey Today</button>
+      </a>
     </div>
   );
 };

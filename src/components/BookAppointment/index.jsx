@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
+import { RxCross2 } from "react-icons/rx";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { webUrl } from "../../common";
 import AppContext from "../../context/AppContext";
+import { toast } from "react-toastify";
 import styles from "./index.module.css";
 import popupStyles from "./popupContainer.module.css";
 import "./index.css";
+import { format, isDate } from "date-fns";
 
 const BookAppointment = ({
   asPopup = false,
@@ -14,7 +17,8 @@ const BookAppointment = ({
   type = "general",
   onComplete,
 }) => {
-  const { getOptions } = useContext(AppContext);
+  const { getOptions, userData } = useContext(AppContext);
+  const { user } = userData;
   const [selectedDate, setSelectedDate] = useState(null);
   const [availability, setAvailability] = useState([]);
   const [availableDates, setAvailableDates] = useState([]);
@@ -22,6 +26,7 @@ const BookAppointment = ({
   const [selectedSlot, setSelectedSlot] = useState("");
   const [reason, setReason] = useState("");
   const [appointmentId, setAppointmentId] = useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   useEffect(() => {
     const fetchAvailability = async () => {
@@ -39,37 +44,22 @@ const BookAppointment = ({
   }, []);
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
-    const isoDate = date.toISOString().slice(0, 10);
-    const match = availability.find((a) => a.date === isoDate);
+    const formatDate = format(date, "yyyy-MM-dd");
+    setSelectedDate(formatDate);
+    const match = availability.find((a) => a.date === formatDate);
     setSlots(match?.slots || []);
     setSelectedSlot("");
   };
 
-  // const handleBook = async () => {
-  //   const res = await fetch("/api/book", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       userId: "USER_ID_HERE",
-  //       date: selectedDate.toISOString().slice(0, 10),
-  //       time: selectedSlot,
-  //       reason,
-  //       type,
-  //     }),
-  //   });
-  //   const data = await res.json();
-  //   setAppointmentId(data.appointmentId);
-  //   handlePayment(data.appointmentId);
-  // };
-
-  const handleBook = async () => {
+  const handleBook = async (e) => {
     try {
-      // 1. Create Razorpay Order from backend
+      e.preventDefault();
+      // 1. Create R
+      // azorpay Order from backend
       const orderRes = await fetch(
-        "http://localhost:3005/api/payments",
+        `${webUrl}/api/payments`,
         getOptions("POST", {
-          amount: 1000, // Amount in paisa (₹10)
+          amount: price, // Amount in paisa (₹10)
           currency: "INR",
         })
       );
@@ -79,9 +69,9 @@ const BookAppointment = ({
       // 2. Open Razorpay Checkout
       const options = {
         key: "rzp_test_7aN1PQTzOMro7K", // Your Razorpay key
-        amount: 1000,
+        amount: price,
         currency: "INR",
-        name: "Prescripto",
+        name: "DrPsych",
         description: "Session Booking Payment",
         order_id: id,
         config: {
@@ -108,55 +98,47 @@ const BookAppointment = ({
         },
 
         handler: async function (response) {
-          console.log("Razorpay Handler Response:", response);
+          console.log(response, "response");
           // 3. Verify payment with backend
           const verifyRes = await fetch(
-            "http://localhost:3005/api/payments/verify",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization:
-                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzNiZDZmMjAxNDZjMmU5ODJkN2M4MiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUyNDM2NjMyLCJleHAiOjE3NTMwNDE0MzJ9.LahxDjUuCSX5YIXP6dMG-XR_ghJfOY5rhncysKcEu_I",
+            `${webUrl}/api/payments/verify`,
+            getOptions("POST", {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              sessionDetails: {
+                date: selectedDate,
+                time: selectedSlot,
+                type,
+                reason,
+                language: selectedLanguage,
               },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                userId: 13,
-                sessionDetails: {
-                  date: selectedDate?.toISOString().slice(0, 10),
-                  time: selectedSlot,
-                  type,
-                  reason,
-                },
-              }),
-            }
+            })
           );
 
           const result = await verifyRes.json();
-          console.log(result, "result");
           if (result.success) {
-            alert("✅ Payment successful and session created!");
+            toast.success(" Payment successful and session created!");
+            onComplete();
           } else {
-            alert("❌ Payment verification failed.");
+            onComplete();
+            toast.error(" Payment verification failed.");
           }
         },
         prefill: {
-          name: "Your Name",
-          email: "user@example.com",
-          contact: "9999999999",
+          name: user?.name || "",
+          email: user?.email || "",
+          contact: user?.phone,
         },
         theme: {
-          color: "#3399cc",
+          color: "#336780",
         },
       };
 
       const razorpay = new window.Razorpay(options);
       razorpay.open();
     } catch (err) {
-      console.error("Payment error:", err);
-      alert("❌ Something went wrong during payment.");
+      toast.error("Payment error:", err);
     }
   };
 
@@ -164,6 +146,10 @@ const BookAppointment = ({
     <div
       className={asPopup ? popupStyles.popupContainer : styles.sectionContainer}
     >
+      <button type="button" className="cancelButton" onClick={onComplete}>
+        <RxCross2 />
+      </button>
+
       <div className={popupStyles.popupCalendarContainer}>
         <div className={popupStyles.popupCalendarDescriptionContainer}>
           <h2 className={popupStyles.title}>{title}</h2>
@@ -187,13 +173,17 @@ const BookAppointment = ({
           }
         />
         {slots.length > 0 && (
-          <div className={popupStyles.popupSlotsContainer}>
+          <form
+            onSubmit={handleBook}
+            className={popupStyles.popupSlotsContainer}
+          >
             <h4 style={{ color: "#336780" }} className={popupStyles.title}>
               Select Available Time Slot
             </h4>
             <div className={popupStyles.popupSlots}>
               {slots.map((slot) => (
                 <button
+                  type="button"
                   key={slot.time}
                   onClick={() => setSelectedSlot(slot.time)}
                   className={`${popupStyles.slotButton} ${
@@ -208,10 +198,13 @@ const BookAppointment = ({
               <>
                 <select
                   name="language"
-                  className={`${styles.customSelect} ${styles.nameInput}`}
+                  onChange={(e) => setSelectedLanguage(e.target.value)}
+                  className={`customSelect ${styles.nameInput}`}
                   required
                 >
-                  <option value="">Preferred Language</option>
+                  <option selected disabled value={selectedLanguage}>
+                    Preferred Language
+                  </option>
                   <option value="english">English</option>
                   <option value="hindi">Hindi</option>
                   <option value="telugu">Telugu</option>
@@ -220,6 +213,8 @@ const BookAppointment = ({
                 </select>
                 <div style={{ flexGrow: 1 }}>
                   <textarea
+                    required
+                    title="Please write the reason to take therapy"
                     placeholder="Why are you booking this slot?"
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
@@ -228,7 +223,6 @@ const BookAppointment = ({
                   />
                 </div>
                 <button
-                  onClick={handleBook}
                   style={{
                     marginTop: "10px",
                     padding: "8px 16px",
@@ -243,7 +237,7 @@ const BookAppointment = ({
                 </button>
               </>
             )}
-          </div>
+          </form>
         )}
       </div>
     </div>

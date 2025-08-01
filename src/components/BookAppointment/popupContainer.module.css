@@ -18,7 +18,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0 1.09rem;
+  padding: 1rem 1.09rem;
   gap: 0.8rem 0;
 }
 
@@ -29,12 +29,15 @@
   width: 100%;
   padding: 0.8rem 0.8rem;
 }
+.popupSlotsContainer {
+  flex-grow: 1;
+}
 .title {
   font-size: 0.72rem;
   font-weight: 600;
   color: #fff;
   line-height: 0.8rem;
-  margin-bottom: 0.3rem;
+  margin: 0.3rem 0;
 }
 
 .description {
@@ -72,11 +75,14 @@
   margin-top: 0.2rem;
 }
 
-.textarea:focus{
+.textarea:focus {
   outline: var(--brandColor);
 }
 
 @media screen and (min-width: 768px) {
+  .popupSlotsContainer {
+    width: 10rem;
+  }
   .popupContainer {
     /* min-height: 90vh;
     max-height: 95vh;
@@ -94,6 +100,7 @@
   }
   .title {
     font-size: 0.41rem;
+    margin: 0.8rem 0;
   }
   .description {
     font-size: 0.41rem;

@@ -28,7 +28,7 @@ const Login = () => {
       const res = await fetch(`${webUrl}/api/auth/request-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, loginT }),
+        body: JSON.stringify({ email, loginType }),
       });
 
       if (res.ok) {

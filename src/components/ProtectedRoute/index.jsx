@@ -4,13 +4,20 @@ import { Navigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 
 const ProtectedRoute = ({ requiredRole, children }) => {
-  const { userData } = useContext(AppContext);
-  console.log(!userData?.token);
+  const { userData, loading } = useContext(AppContext); // <-- Make sure `loading` is available from context
+
+  // Show a loader while context is initializing
+  if (loading) {
+    return <div>Loading...</div>; // Or your custom spinner
+  }
+
+  // If user not logged in
   if (!userData || !userData.token) {
     return <Navigate to="/login" replace />;
   }
 
-  if (requiredRole && userData?.user?.role !== requiredRole) {
+  // If user role doesn't match
+  if (requiredRole && userData.user?.role !== requiredRole) {
     return <Navigate to="/unauthorized" replace />;
   }
 

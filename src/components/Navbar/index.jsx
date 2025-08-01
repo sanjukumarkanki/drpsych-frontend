@@ -102,6 +102,7 @@ import { MdClose } from "react-icons/md";
 import AppContext from "../../context/AppContext";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -124,8 +125,9 @@ const Navbar = () => {
     try {
       Cookies.remove("authToken");
       toast.success("Logout successful");
-      Navigate("/login", { replace: true });
+      window.location.href = "/login";
     } catch (error) {
+      console.log(error);
       toast.error("Logout Failed", error);
     }
   };
@@ -167,7 +169,7 @@ const Navbar = () => {
             <div className="dropdown-menu">
               <a href="/dashboard">My Appointments</a>
               <a href="/settings">My Profile</a>
-              <p onClick={() => onLogOut()}>Logout</p>
+              <p onClick={onLogOut}>Logout</p>
             </div>
           )}
         </div>

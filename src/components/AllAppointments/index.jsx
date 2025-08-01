@@ -4,39 +4,12 @@ import AllAppointementsCard from "../AllAppointementsCard";
 import Popup from "reactjs-popup";
 import { RxCross2 } from "react-icons/rx";
 import "../../App.css";
-
-const appointmentsData = [
-  {
-    id: "#1234",
-    username: "Ananya",
-    scheduledAt: "2025-07-20T10:30:00",
-    sessionType: "Individual Therapy",
-    mobile: "+91 9876543210",
-    status: "Accepted",
-    meetLink: "https://meet.google.com/abc-defg-hij",
-    userId: "user1",
-  },
-  {
-    id: "#1235",
-    username: "Rahul Mehta",
-    scheduledAt: "2025-07-20T12:00:00",
-    sessionType: "Teen Therapy",
-    mobile: "+91 8765432190",
-    status: "Cancelled",
-    meetLink: "https://meet.google.com/jkl-mnop-qr",
-    userId: "user2",
-  },
-  {
-    id: "#1236",
-    username: "Drishti Verma",
-    scheduledAt: "2025-07-20T15:00:00",
-    sessionType: "Couple Therapy",
-    mobile: "+91 9988776655",
-    status: "Rescheduled",
-    meetLink: "https://meet.google.com/stu-vwxy-z",
-    userId: "user3",
-  },
-];
+import { useEffect } from "react";
+import { webUrl } from "../../common";
+import { useContext } from "react";
+import AppContext from "../../context/AppContext";
+import { toast } from "react-toastify";
+import { TailSpin } from "react-loader-spinner";
 
 const formatTimeRange = (start) => {
   const date = new Date(start);
@@ -71,8 +44,34 @@ const AppointmentsTable = () => {
   const dateRef = useRef(null);
   const [statusFilter, setStatusFilter] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [appointments, setAppointments] = useState(appointmentsData);
+  const [isLoading, setIsLoading] = useState(false);
+  const [appointments, setAppointments] = useState([]);
   const [selectedAppointment, setSelectedAppointment] = useState("");
+  const { getOptions } = useContext(AppContext);
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `${webUrl}/api/sessions`,
+          getOptions("GET")
+        );
+        if (response?.ok) {
+          const data = await response.json();
+          setAppointments(data?.data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+        toast.error("Failed To Fecth", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchAppointments();
+  }, []);
 
   const handleStatusUpdate = (id, newStatus) => {
     const updated = appointments.map((appt) =>
@@ -81,12 +80,15 @@ const AppointmentsTable = () => {
     setAppointments(updated);
   };
 
-  const filteredAppointments = appointments.filter((appt) => {
-    const matchesStatus = statusFilter === "" || appt.status === statusFilter;
-    const matchesDate =
-      selectedDate === "" || formatDate(appt.scheduledAt) === selectedDate;
-    return matchesStatus && matchesDate;
-  });
+  let filteredAppointments = [];
+  if (appointments?.length) {
+    filteredAppointments = appointments?.filter((appt) => {
+      const matchesStatus = statusFilter === "" || appt.status === statusFilter;
+      const matchesDate =
+        selectedDate === "" || formatDate(appt.sessionDate) === selectedDate;
+      return matchesStatus && matchesDate;
+    });
+  }
 
   return (
     <>
@@ -99,9 +101,11 @@ const AppointmentsTable = () => {
             onChange={(e) => setStatusFilter(e.target.value)}
           >
             <option value="">All Status</option>
-            <option>Accepted</option>
-            <option>Cancelled</option>
-            <option>Rescheduled</option>
+            <option value="pending">Pending</option>
+            <option value="ccmpleted">Completed</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="rescheduled">Rescheduled</option>
           </select>
           <button
             onClick={() => dateRef.current?.showPicker()}
@@ -123,7 +127,7 @@ const AppointmentsTable = () => {
         <table className={styles.appointmentsTable}>
           <thead>
             <tr>
-              <th>Patient Name</th>
+              <th>User Name</th>
               <th>Time</th>
               <th>Status</th>
               <th>Meet Link</th>
@@ -141,16 +145,22 @@ const AppointmentsTable = () => {
                 </td>
               </tr>
             ) : (
-              filteredAppointments.map((appt, index) => (
-                <AllAppointementsCard
-                  key={appt.id}
-                  setSelectedAppointment={setSelectedAppointment}
-                  appointment={appt}
-                  formatTimeRange={formatTimeRange}
-                  statusClass={statusClass}
-                  onStatusUpdate={handleStatusUpdate}
-                />
-              ))
+              <>
+                {isLoading ? (
+                  <TailSpin width={30} height={30} />
+                ) : (
+                  filteredAppointments.map((appt) => (
+                    <AllAppointementsCard
+                      key={appt.id}
+                      setSelectedAppointment={setSelectedAppointment}
+                      appointment={appt}
+                      formatTimeRange={formatTimeRange}
+                      statusClass={statusClass}
+                      onStatusUpdate={handleStatusUpdate}
+                    />
+                  ))
+                )}
+              </>
             )}
           </tbody>
         </table>

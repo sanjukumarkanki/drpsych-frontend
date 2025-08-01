@@ -9,33 +9,31 @@ const AllAppointementsCard = ({
   statusClass,
   onStatusUpdate,
 }) => {
+  const { patientId, gmeetLink, sessionDate, status } = appointment;
+
   return (
     <tr key={key}>
       <td>
         <div className={styles.patientName}>
           <div className={styles.avatar}>
-            {appointment.username
+            {appointment?.patientId?.email
               .split(" ")
               .map((n) => n[0])
               .join("")
               .substring(0, 2)}
           </div>
-          {appointment.username}
+          {patientId?.name || patientId?.email}
         </div>
       </td>
-      <td className={styles.scheduletime}>
-        {formatTimeRange(appointment.scheduledAt)}
-      </td>
+      <td className={styles.scheduletime}>{sessionDate}</td>
       <td>
-        <span
-          className={`${styles.statusBadge} ${statusClass(appointment.status)}`}
-        >
+        <span className={`${styles.statusBadge} ${statusClass(status)}`}>
           {appointment.status}
         </span>
       </td>
       <td>
         <a
-          href={appointment.meetLink}
+          href={gmeetLink}
           target="_blank"
           rel="noreferrer"
           className={styles.joinBtn}

@@ -57,7 +57,9 @@
   border-radius: 6px;
   cursor: pointer;
 }
-.datetimeSelector > h3 {
+
+.datetimeSelector > h3,
+.pleaseSelectText {
   font-size: 0.4rem;
   font-weight: 600;
   color: var(--brandColor);
@@ -65,6 +67,34 @@
 
 .doctorAvailabilityContainer .timeSlotContainer::-webkit-scrollbar {
   display: none;
+}
+.available-date {
+  background-color: var(--brandColor);
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+}
+.selected {
+  background-color: red;
+}
+
+.timeSlotBtn.existing-slot {
+  background-color: #e0e0e0;
+  border: 2px solid gray;
+  color: #888;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.timeSlotBtn.selected {
+  background-color: var(--brandColor);
+  border: 2px solid var(--brandColor);
+}
+
+.timeSlotBtn {
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 8px;
 }
 
 @media screen and (min-width: 768px) {
@@ -74,8 +104,14 @@
       rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
       rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    height: 13rem;
   }
-  .datetimeSelector > h3 {
+  .rightSlots {
+    height: 11rem;
+    overflow-y: scroll;
+  }
+  .datetimeSelector > h3,
+  .pleaseSelectText {
     font-size: 0.5rem;
   }
   .timeSlotContainer {
@@ -83,5 +119,10 @@
     flex-wrap: nowrap;
     overflow-x: scroll;
     gap: 0 0.5rem;
+  }
+
+  .timeSlotBtn {
+    padding: 0.1rem 0.8rem;
+    font-size: 0.3rem;
   }
 }

@@ -73,7 +73,13 @@ export default function TypesOfTherpies() {
         )}
       </div>
 
-      <Popup open={popupOpen} onClose={() => setPopupOpen(false)} modal nested>
+      <Popup
+        closeOnDocumentClick={false}
+        open={popupOpen}
+        onClose={() => setPopupOpen(false)}
+        modal
+        nested
+      >
         {popupStep === "consent" && (
           <div style={{ padding: 20 }}>
             <h3>Parental Consent Required</h3>
